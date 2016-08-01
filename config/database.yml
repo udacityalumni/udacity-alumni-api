@@ -1,18 +1,22 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-#
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  timeout: 5000
+  username: postgres
+  # please see the update below about using hostnames to
+  # access linked services via docker-compose
+  host: <%= ENV['POSTGRES_PORT_5432_TCP_ADDR'] %>
+  port: <%= ENV['POSTGRES_PORT_5432_TCP_PORT'] %>
+
 development:
-  adapter: postgresql
-  database: postgres
-  pool: 5
+  <<: *default
+  database: app_development
 
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run
+# "rake". Do not set this db to the same as development or
+# production.
 test:
-  adapter: postgresql
-  database: postgres
-  pool: 5
-
-production:
-  adapter: postgresql
+  <<: *default
+  database: app_test
