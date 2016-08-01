@@ -5,16 +5,18 @@ Welcome!!  This app is the starter project for the Udacity Alumni Web Applicatio
 
 The docker container will do _all_ of the networking between the database and app and will start a rails server.
 
-To open the correct URL in your webbroser, you can type
+To open the correct URL in your web browser, you can run the following
 
 ```
 open "http://$(docker-machine ip default):3000"
 ```
 
-Which will open up the docker-machine's IP to port 3000.
+Which will print out the IP of the docker-machine and open a web browser to the correct URL where the server is serving from.
 
 ### Installing
-The installation is completely automated by Docker.   Running
+The installation is completely automated by Docker.  Please reference the [Docker installation guide](https://docs.docker.com/engine/installation/) if you need any help getting setup.
+
+Running
 ```
 docker-compose up
 ```
