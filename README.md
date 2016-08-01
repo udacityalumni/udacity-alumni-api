@@ -3,6 +3,16 @@
 ## Getting Started
 Welcome!!  This app is the starter project for the Udacity Alumni Web Application project.  More information will be provided here and in [the Udacity Alumni Wiki](https://github.com/udacityalumni/resources/wiki) as it becomes available.
 
+The docker container will do _all_ of the networking between the database and app and will start a rails server.
+
+To open the correct URL in your webbroser, you can type
+
+```
+open "http://$(docker-machine ip default):3000"
+```
+
+Which will open up the docker-machine's IP to port 3000.
+
 ### Installing
 The installation is completely automated by Docker.   Running
 ```
@@ -12,8 +22,10 @@ will do all of the heavy lifting for you in getting your app setup.
 
 Once installed, to access the docker container internally, please run
 ```
-docker exec -it <container_name> bash
+docker exec -it alumniapi_app_1 bash
 ```
+
+In this example, the app container is named alumniapi_app_1.  Please substitute the name of the container if the command fails due to the container name being changed. You can locate the container's name from listing all docker containers with:  `docker ps -a`.
 
 ## Deployment
 TBD
