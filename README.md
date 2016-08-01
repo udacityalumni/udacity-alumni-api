@@ -1,24 +1,33 @@
-# README
+# Alumni Web App API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Getting Started
+Welcome!!  This app is the starter project for the Udacity Alumni Web Application project.  More information will be provided here and in [the Udacity Alumni Wiki](https://github.com/udacityalumni/resources/wiki) as it becomes available.
 
-Things you may want to cover:
+### Installing
+The installation is completely automated by Docker.   Running
+```
+docker-compose up
+```
+will do all of the heavy lifting for you in getting your app setup.
 
-* Ruby version
+Once installed, to access the docker container internally, please run
+```
+docker exec -it <container_name> bash
+```
 
-* System dependencies
+## Deployment
+TBD
 
-* Configuration
+## Built With
+Rails v5 Api Mode
 
-* Database creation
+## Authors
 
-* Database initialization
+* **Ryan Collins**
 
-* How to run the test suite
+## License
 
-* Services (job queues, cache servers, search engines, etc.)
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-* Deployment instructions
-
-* ...
+## Acknowledgments
+TBD
