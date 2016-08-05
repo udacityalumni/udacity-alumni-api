@@ -16,6 +16,13 @@ Which will print out the IP of the docker-machine and open a web browser to the 
 ### Installing
 The installation is completely automated by Docker.  Please reference the [Docker installation guide](https://docs.docker.com/engine/installation/) if you need any help getting setup.
 
+To start, clone the repository using git clone:
+```
+git clone https://github.com/udacityalumni/alumni-api.git
+```
+
+The setup of the api is totally automated by [Docker](https://www.docker.com/).  Please follow the instructions for installing Docker [located here](https://docs.docker.com/engine/installation/).
+
 Running
 ```
 docker-compose up
