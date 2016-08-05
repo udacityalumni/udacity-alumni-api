@@ -21,8 +21,6 @@ To start, clone the repository using git clone:
 git clone https://github.com/udacityalumni/alumni-api.git
 ```
 
-The setup of the api is totally automated by [Docker](https://www.docker.com/).  Please follow the instructions for installing Docker [located here](https://docs.docker.com/engine/installation/).
-
 Running
 ```
 docker-compose up
