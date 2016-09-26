@@ -1,0 +1,5 @@
+---
+:warnings_remove:
+- :jshint
+:warnings_add:
+- :rubocop
