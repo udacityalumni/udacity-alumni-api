@@ -35,7 +35,10 @@ docker exec -it alumniapi_app_1 bash
 In this example, the app container is named alumniapi_app_1.  Please substitute the name of the container if the command fails due to the container name being changed. You can locate the container's name from listing all docker containers with:  `docker ps -a`.
 
 #### Use without Docker
-The app can be run without Docker, if you are not favorible to it.  You must run the database setup scripts seperately.
+The app can be run without Docker, if you are not favorible to it.  You will want to get Rails v.5.0 and Ruby 2.3.1 installed on your machine.  You can follow the guide [located here](http://railsapps.github.io/installing-rails.html).
+
+You must run the database setup scripts seperately.  
+
 ```
 bundle install
 rake db:migrate db:seed
