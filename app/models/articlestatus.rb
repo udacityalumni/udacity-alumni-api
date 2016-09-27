@@ -1,0 +1,2 @@
+class Articlestatus < ApplicationRecord
+end
