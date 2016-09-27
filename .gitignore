@@ -8,3 +8,5 @@ dm.sh
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+
+.idea/
