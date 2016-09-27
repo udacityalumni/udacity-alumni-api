@@ -189,6 +189,8 @@ GEM
       ruby_parser (~> 3.8)
       virtus (~> 1.0)
     sexp_processor (4.7.0)
+    shoulda-matchers (3.1.1)
+      activesupport (>= 4.0.0)
     spring (1.7.2)
     spring-watcher-listen (2.0.0)
       listen (>= 2.7, < 4.0)
@@ -233,6 +235,7 @@ DEPENDENCIES
   rspec-rails
   rubocop (~> 0.42.0)
   rubycritic
+  shoulda-matchers (~> 3.1)
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
