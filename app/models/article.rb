@@ -4,6 +4,6 @@ class Article < ApplicationRecord
 
   alias_attribute :status, :article_status
   def slug
-    title.split(' ').map(&:downcase).join(' ') if title
+    title.parameterize
   end
 end
