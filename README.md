@@ -34,6 +34,13 @@ docker exec -it alumniapi_app_1 bash
 
 In this example, the app container is named alumniapi_app_1.  Please substitute the name of the container if the command fails due to the container name being changed. You can locate the container's name from listing all docker containers with:  `docker ps -a`.
 
+#### Use without Docker
+The app can be run without Docker, if you are not favorible to it.  You must run the database setup scripts seperately.
+```
+bundle install
+rake db:migrate db:seed
+```
+
 ## Style and Linting
 The app is setup to use rubocop to lint from both the commandline and within text editors.  Note that some of the generated code may fail the rubocop tests, but during development we need to ensure that our code is statically analyzed.
 
