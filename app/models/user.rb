@@ -3,4 +3,16 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  enum role: [ :user, :author, :admin ]
+
+  after_initialize :set_default_role
+
+
+  private
+
+  def set_default_role
+    self.role ||= :user if self.new_record?
+  end
+
 end
