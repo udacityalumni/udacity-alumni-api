@@ -24,11 +24,7 @@ RSpec.describe ArticlesController, type: :controller do
   # Article. As you add validations to Article, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
-
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    skip('Add valid attributes to enable these tests')
   }
 
   # This should return the minimal set of values that should be in the session
@@ -69,18 +65,6 @@ RSpec.describe ArticlesController, type: :controller do
       it "redirects to the created article" do
         post :create, params: {article: valid_attributes}, session: valid_session
         expect(response).to redirect_to(Article.last)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns a newly created but unsaved article as @article" do
-        post :create, params: {article: invalid_attributes}, session: valid_session
-        expect(assigns(:article)).to be_a_new(Article)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, params: {article: invalid_attributes}, session: valid_session
-        expect(response).to render_template("new")
       end
     end
   end
