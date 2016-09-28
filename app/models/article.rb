@@ -1,6 +1,6 @@
 class Article < ApplicationRecord
   belongs_to :user
-  belongs_to :article_status
+  has_one :article_status
 
   alias_attribute :status, :article_status
   def slug
