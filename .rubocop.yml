@@ -6,5 +6,7 @@ AllCops:
     - lib/**/*.rake
   Exclude:
     - db/schema.rb
+    - 'spec/**/*'
+    
 Rails:
   Enabled: true

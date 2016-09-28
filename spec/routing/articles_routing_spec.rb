@@ -1,38 +1,22 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe ArticlesController, type: :routing do
-  describe "routing" do
+  describe 'routing' do
 
-    it "routes to #index" do
-      expect(:get => "/articles").to route_to("articles#index")
+    it 'routes to #index' do
+      expect(get: '/articles', format: 'json').to route_to(controller: 'articles', action: 'index', format: 'json')
     end
 
-    it "routes to #new" do
-      expect(:get => "/articles/new").to route_to("articles#new")
+    it 'routes to #create' do
+      expect(post: '/articles', format: 'json').to route_to(controller: 'articles', action: 'create', format: 'json')
     end
 
-    it "routes to #show" do
-      expect(:get => "/articles/1").to route_to("articles#show", :id => "1")
+    it 'routes to #update via PATCH' do
+      expect(patch: '/articles/1', format: 'json').to route_to(controller: 'articles', action: 'update', format: 'json', id: '1')
     end
 
-    it "routes to #edit" do
-      expect(:get => "/articles/1/edit").to route_to("articles#edit", :id => "1")
-    end
-
-    it "routes to #create" do
-      expect(:post => "/articles").to route_to("articles#create")
-    end
-
-    it "routes to #update via PUT" do
-      expect(:put => "/articles/1").to route_to("articles#update", :id => "1")
-    end
-
-    it "routes to #update via PATCH" do
-      expect(:patch => "/articles/1").to route_to("articles#update", :id => "1")
-    end
-
-    it "routes to #destroy" do
-      expect(:delete => "/articles/1").to route_to("articles#destroy", :id => "1")
+    it 'routes to #destroy' do
+      expect(delete: '/articles/1', format: 'json').to route_to(controller: 'articles', action: 'destroy', format: 'json', id: '1')
     end
 
   end
