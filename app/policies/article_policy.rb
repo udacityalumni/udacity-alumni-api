@@ -1,0 +1,3 @@
+class ArticlePolicy < ApplicationPolicy
+  
+end
