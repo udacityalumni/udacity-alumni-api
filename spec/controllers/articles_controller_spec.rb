@@ -52,21 +52,6 @@ RSpec.describe ArticlesController, type: :controller do
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new article as @article" do
-      get :new, params: {}, session: valid_session
-      expect(assigns(:article)).to be_a_new(Article)
-    end
-  end
-
-  describe "GET #edit" do
-    it "assigns the requested article as @article" do
-      article = Article.create! valid_attributes
-      get :edit, params: {id: article.to_param}, session: valid_session
-      expect(assigns(:article)).to eq(article)
-    end
-  end
-
   describe "POST #create" do
     context "with valid params" do
       it "creates a new Article" do
