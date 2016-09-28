@@ -1,12 +1,3 @@
-ArticleStatus.create(
-  title: 'Draft'
-)
-ArticleStatus.create(
-  title: 'Published'
-)
-ArticleStatus.create(
-  title: 'Archived'
-)
 User.create(
   name: 'David Harris',
   email: 'forbiddenvoid@gmail.com',
@@ -48,6 +39,7 @@ User.create(
 #   ]
 # }
 #
+statuses = *(0..2)
 featured_count = 0
 10.times do
   title = FFaker::HealthcareIpsum.words.map(&:capitalize).join(' ')
@@ -60,10 +52,10 @@ featured_count = 0
   end
   Article.create(
     user: User.all.sample,
-    status: ArticleStatus.all.sample,
     title: title,
     featured: featured,
     spotlighted: featured,
+    status: statuses.sample,
     content: FFaker::HealthcareIpsum.paragraphs,
     feature_image: FFaker::Avatar.image
   )

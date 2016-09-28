@@ -10,28 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160927211620) do
+ActiveRecord::Schema.define(version: 20160928191930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "article_statuses", force: :cascade do |t|
-    t.string   "title",      null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "articles", force: :cascade do |t|
-    t.string   "title",                             null: false
+    t.string   "title",                         null: false
     t.integer  "user_id"
-    t.boolean  "featured",          default: false
-    t.boolean  "spotlighted",       default: false
-    t.text     "content",                           null: false
+    t.boolean  "featured",      default: false
+    t.boolean  "spotlighted",   default: false
+    t.text     "content",                       null: false
     t.string   "feature_image"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.integer  "article_status_id"
-    t.index ["article_status_id"], name: "index_articles_on_article_status_id", using: :btree
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "status",        default: 0,     null: false
     t.index ["user_id"], name: "index_articles_on_user_id", using: :btree
   end
 
@@ -55,5 +48,4 @@ ActiveRecord::Schema.define(version: 20160927211620) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "articles", "article_statuses"
 end

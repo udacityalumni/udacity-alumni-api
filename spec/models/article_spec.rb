@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Article, type: :model do
   describe 'Associations' do
     it { should belong_to(:user) }
-    it { should belong_to(:article_status) }
   end
   it 'is not valid without a title' do
     expect(
@@ -14,5 +13,10 @@ RSpec.describe Article, type: :model do
     expect(
       Article.new(title: 'Hello World')
     ).to_not be_valid
+  end
+  it 'sets the status to draft by default' do
+    expect(
+      Article.new.status
+    ).to eq('draft')
   end
 end
