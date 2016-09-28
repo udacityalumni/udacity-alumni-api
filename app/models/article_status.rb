@@ -1,2 +1,0 @@
-class ArticleStatus < ApplicationRecord
-end
