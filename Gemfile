@@ -29,3 +29,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Authentication and authorization
 gem 'devise'
 gem 'pundit'
+gem 'active_model_serializers'

@@ -56,7 +56,7 @@ featured_count = 0
     featured: featured,
     spotlighted: featured,
     status: statuses.sample,
-    content: FFaker::HealthcareIpsum.paragraphs,
+    content: FFaker::HealthcareIpsum.paragraph,
     feature_image: FFaker::Avatar.image
   )
 end
