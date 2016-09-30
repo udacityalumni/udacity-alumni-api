@@ -1,4 +1,4 @@
-class ArticlesController < ApplicationController
+class Api::V1::ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :update, :destroy]
   respond_to :json
 
