@@ -30,3 +30,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'pundit'
 gem 'active_model_serializers'
+
+gem 'rails-controller-testing'
