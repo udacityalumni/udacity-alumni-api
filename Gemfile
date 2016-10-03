@@ -6,13 +6,18 @@ gem 'rails', '~> 5.0.0'
 gem 'pg'
 gem 'puma', '~> 3.0'
 gem 'rack-cors'
-gem 'ffaker'
+
+group :test do
+  gem 'ffaker'
+  gem 'database_cleaner', '~> 1.5.3'
+end
 
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -30,5 +35,3 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'pundit'
 gem 'active_model_serializers'
-
-gem 'rails-controller-testing'
