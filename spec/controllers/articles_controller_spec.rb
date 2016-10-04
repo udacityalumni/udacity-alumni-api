@@ -2,10 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::ArticlesController, type: :controller do
 
-  testUser = FactoryGirl.create(:user)
-
   let(:valid_attributes) {
-    FactoryGirl.build(:article, :user => testUser).attributes.symbolize_keys
+    build(:article).attributes.symbolize_keys
   }
 
   let(:invalid_attributes) {
