@@ -1,6 +1,5 @@
 class Api::V1::UsersController < ApplicationController
   before_action :authenticate_with_token!, only: [:update, :destroy]
-  skip_before_action :verify_authenticity_token
 
   def show
     current_user = User.find_by(auth_token: params[:auth_token])

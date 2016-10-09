@@ -1,5 +1,4 @@
 class Api::V1::SessionsController < ApplicationController
-  skip_before_action :verify_authenticity_token
 
   def create
     user_password = params[:session][:password]
@@ -18,7 +17,7 @@ class Api::V1::SessionsController < ApplicationController
     auth_token = params[:auth_token] || request.headers['Authorization']
     user = User.find_by(auth_token: auth_token)
     if user
-      user.generate_authentication_token!
+      user.generate_auth_token!
       user.save
       head 204
     else
@@ -30,7 +29,7 @@ class Api::V1::SessionsController < ApplicationController
 
   def sign_in_user!(user)
     sign_in user, store: false
-    user.generate_authentication_token!
+    user.generate_auth_token!
     user.save
   end
 end
