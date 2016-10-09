@@ -8,7 +8,7 @@ class Api::V1::SessionsController < ApplicationController
     user = user_email.present? && User.find_by(email: user_email.downcase)
     if user && user.valid_password?(user_password)
       sign_in_user! user
-      render json: user, serializer: SessionsSerializer, status: 200, location: [:api_v1, user]
+      render json: user, serializer: SessionSerializer, status: 200, location: [:api_v1, user]
     else
       render json: { errors: 'Invalid email or password' }, status: 422
     end

@@ -21,22 +21,21 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    if current_user && current_user.addresses.length
-      current_user.addresses.map(&:destroy)
-    end
     if current_user.update(user_params)
-      render json: current_user, serializer: UserSerializer, status: 200, location: [:api_v1, current_user]
+      render json: current_user,
+             serializer: UserSerializer,
+             status: 200,
+             location: [:api_v1, current_user]
     else
       render json: { errors: current_user.errors }, status: 422
     end
   end
 
   private
-  
-    # User params accepted at this point for creating a user are as shown:
-    def user_params
-      params.require(:user).permit(:password, :password_confirmation, :bio,
-                                   :email, :name, :avatar)
-    end
 
+  # User params accepted at this point for creating a user are as shown:
+  def user_params
+    params.require(:user).permit(:password, :password_confirmation, :bio,
+                                 :email, :name, :avatar)
+  end
 end
