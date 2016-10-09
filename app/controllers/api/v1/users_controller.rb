@@ -1,9 +1,9 @@
 class Api::V1::UsersController < ApplicationController
   before_action :authenticate_with_token!, only: [:update, :destroy]
-  skip_before_action :verify_authenticity_token
 
   def show
-    current_user = User.find_by(auth_token: params[:auth_token])
+    auth_token = request.headers['Authorization']
+    current_user = User.find_by(auth_token: auth_token)
     if current_user
       respond_with current_user, serializer: UserSerializer
     else
@@ -14,7 +14,7 @@ class Api::V1::UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
-      render json: user, status: 201, location: [:api_v1, user]
+      render json: user, status: 201, location: :api_v1_users
     else
       render json: { errors: user.errors }, status: 422
     end
