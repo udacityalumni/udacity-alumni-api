@@ -6,9 +6,9 @@ gem 'rails', '~> 5.0.0'
 gem 'pg'
 gem 'puma', '~> 3.0'
 gem 'rack-cors'
+gem 'ffaker'
 
 group :test do
-  gem 'ffaker'
   gem 'database_cleaner', '~> 1.5.3'
 end
 
