@@ -8,6 +8,8 @@ RSpec.describe Tag, type: :model do
   
   it { should validate_presence_of :tag }
   
+  it { should have_and_belong_to_many(:articles) }
+  
   it 'is not valid without a tag' do
     expect(
       Tag.new()
