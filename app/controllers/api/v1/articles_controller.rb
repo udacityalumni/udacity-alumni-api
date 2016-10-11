@@ -1,10 +1,13 @@
 class Api::V1::ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :update, :destroy]
+  after_action :verify_authorized
+
   respond_to :json
 
   # GET /articles
   def index
     @articles = Article.all
+    authorize @articles
 
     render json: @articles
   end
@@ -17,8 +20,11 @@ class Api::V1::ArticlesController < ApplicationController
   # POST /articles
   def create
     @article = Article.new(article_params)
+    authorize @article
+    authorize User
 
     if @article.save
+      # FIXME uncomment location: @article
       render json: @article, status: :created #, location: @article
     else
       render json: @article.errors, status: :unprocessable_entity
@@ -44,6 +50,7 @@ class Api::V1::ArticlesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_article
     @article = Article.find(params[:id])
+    authorize @article
   end
 
   # Only allow a trusted parameter "white list" through.

@@ -8,6 +8,7 @@ require 'rspec/rails'
 require 'shoulda/matchers'
 require 'ffaker'
 require 'pundit/rspec'
+require 'pundit/matchers'
 require 'devise'
 
 ActiveRecord::Migration.maintain_test_schema!
