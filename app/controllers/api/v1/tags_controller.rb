@@ -48,7 +48,7 @@ class Api::V1::TagsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def tag_params
-    params.require(:tag).permit(:tag)
+    params.require(:tag).permit(:tag, :articles)
   end
 
 end
