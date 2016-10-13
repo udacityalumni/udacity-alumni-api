@@ -6,12 +6,24 @@ User.create(
 User.create(
   name: 'Ryan Collins',
   email: 'admin@ryancollins.io',
-  password: 'Password'
+  password: 'Password',
+  bio: 'Experienced Software Engineer specializing in implementing cutting-edge technologies in a multitude of domains, focusing on Front End Web Development and UI / UX.',
+  avatar: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAQyAAAAJDU3YWY4Nzk1LWQ0YzEtNGIyMy1iOWI3LTBmMTllMmI1Y2Q5NQ.jpg'
 )
 User.create(
   name: 'Andreas Daimainger',
   email: 'andreas@gmail.com',
-  password: 'Password'
+  password: 'Password',
+  bio: 'I started to code about 2 years ago and have been very focused on developing cutting edge UI components. I have a passion for functional programming, and I love creating environments that make it easier for developers to write consistent, testable code.',
+  avatar: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAcWAAAAJDM2ZjBiYmMwLTk4ZmUtNGVkOC05MjYyLTMxMGI1ZmU1NTMyZQ.jpg'
+)
+
+User.create(
+  name: 'Demo User',
+  email: 'demo@udacity.com',
+  password: 'Password123!',
+  bio: 'An amazing, but sadly fake user',
+  avatar: 'http://data.whicdn.com/images/88776105/superthumb.jpg'
 )
 
 # Articles

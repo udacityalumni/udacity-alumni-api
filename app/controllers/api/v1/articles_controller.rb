@@ -23,8 +23,7 @@ class Api::V1::ArticlesController < ApplicationController
     authorize @article
 
     if @article.save
-      # FIXME uncomment location: @article
-      render json: @article, status: :created #, location: @article
+      render json: @article, status: :created, location: :api_v1_articles
     else
       render json: @article.errors, status: :unprocessable_entity
     end
