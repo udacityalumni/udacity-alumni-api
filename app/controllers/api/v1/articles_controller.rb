@@ -21,7 +21,6 @@ class Api::V1::ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     authorize @article
-    authorize User
 
     if @article.save
       # FIXME uncomment location: @article

@@ -1,6 +1,15 @@
 class ArticlePolicy < ApplicationPolicy
   attr_reader :user, :article
 
+  def initialize(current_user, article)
+    if current_user
+      @user = current_user
+    elsif article.class == Article
+      @user = article.user
+    end
+    @article = article
+  end
+
   def index?
     true
   end
