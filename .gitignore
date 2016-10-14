@@ -10,3 +10,4 @@ dm.sh
 !/tmp/.keep
 
 .idea/
+.env
