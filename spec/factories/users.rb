@@ -6,5 +6,6 @@ FactoryGirl.define do
     password_confirmation 'password'
     role                  'admin'
     bio                   'Hello world'
+    avatar                'http://github.com/RyanCCollins.png'
   end
 end
