@@ -28,38 +28,11 @@ ActiveRecord::Schema.define(version: 20161010160812) do
     t.index ["user_id"], name: "index_articles_on_user_id", using: :btree
   end
 
-  create_table "articles_nanodegrees", id: false, force: :cascade do |t|
-    t.integer "article_id",    null: false
-    t.integer "nanodegree_id", null: false
-  end
-
   create_table "articles_tags", id: false, force: :cascade do |t|
     t.integer "article_id", null: false
     t.integer "tag_id",     null: false
     t.index ["article_id", "tag_id"], name: "index_articles_tags_on_article_id_and_tag_id", using: :btree
     t.index ["tag_id", "article_id"], name: "index_articles_tags_on_tag_id_and_article_id", using: :btree
-  end
-
-  create_table "nanodegrees", force: :cascade do |t|
-    t.string   "name"
-    t.string   "abbrev"
-    t.integer  "code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "nanodegrees_profiles", id: false, force: :cascade do |t|
-    t.integer "profile_id",    null: false
-    t.integer "nanodegree_id", null: false
-  end
-
-  create_table "profiles", force: :cascade do |t|
-    t.text     "about"
-    t.string   "webpage"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "user_id"
-    t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
   end
 
   create_table "tags", force: :cascade do |t|
@@ -90,5 +63,4 @@ ActiveRecord::Schema.define(version: 20161010160812) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "profiles", "users"
 end
