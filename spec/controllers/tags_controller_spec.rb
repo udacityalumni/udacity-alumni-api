@@ -31,12 +31,26 @@ RSpec.describe Api::V1::TagsController, type: :controller do
 
   describe "when PATCH/PUT #update" do
     before(:each) do
-
+      @tag = FactoryGirl.create :tag
+      @user = FactoryGirl.create :user
+      request.headers['Authorization'] = @user.auth_token
+      patch :update, params: { id: @tag.id, tag: { tag: 'Hello world' } }
     end
+    it 'successfully updates the tag and responds with json' do
+      expect(json_response[:tag][:tag]).to eql 'Hello world'
+    end
+    it { should respond_with 200 }
   end
 
   describe 'when DELETE #destroy' do
+    before(:each) do
+      @tag = FactoryGirl.create :tag
+      @user = FactoryGirl.create :user
+      request.headers['Authorization'] = @user.auth_token
+      delete :destroy, id: @tag.id
+    end
 
+    it { should respond_with 204 }
   end
 
 end
