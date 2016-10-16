@@ -1,0 +1,15 @@
+ArticleType = GraphQL::ObjectType.define do
+  name 'Article'
+  description 'The articles for the site'
+  field :id, types.ID, 'The id of the article'
+  field :status, ArticleStatusEnumType, 'The article status'
+  field :slug, types.String, 'The article slug'
+  field :content, types.String, 'The content of the article'
+  field :title, types.String, 'The title of the article'
+  field :user, UserType, 'The user who posted the article'
+  field :feature_image, types.String, 'The featured image for the article'
+  field :created_at, types.String, 'The date the article was created'
+  field :updated_at, types.String, 'The date the article was updated'
+  field :featured, types.Bool, 'The featured status of the article'
+  field :tags, types[TagType], 'Tags associated with the article'
+end
