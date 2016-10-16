@@ -1,3 +1,5 @@
+![Codeship](https://codeship.com/projects/9c420570-75de-0134-b9f2-66e77c03031d/status?branch=master)
+
 # Alumni Web App API
 
 ## Getting Started
