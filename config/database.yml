@@ -3,7 +3,7 @@ default: &default
   encoding: unicode
   pool: 5
   timeout: 5000
-  username: ubuntu
+  username: postgres
   # please see the update below about using hostnames to
   # access linked services via docker-compose
   host: <%= ENV['POSTGRES_PORT_5432_TCP_ADDR'] %>

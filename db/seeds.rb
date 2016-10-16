@@ -52,15 +52,16 @@ User.create(
 # }
 #
 statuses = *(0..2)
-featured_count = 0
+spotlighted_count = 0
 10.times do
   title = FFaker::HealthcareIpsum.words.map(&:capitalize).join(' ')
   featured = [true, false, false].sample
-  if featured && featured_count <= 3
-    featured_count += 1
-    featured = true
+  spotlighted = [true, false].sample
+  if spotlighted && spotlighted_count <= 3
+    spotlighted_count += 1
+    spotlighted = true
   else
-    featured = false
+    spotlighted = false
   end
   Article.create(
     user: User.all.sample,

@@ -1,10 +1,13 @@
 class Api::V1::ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :update, :destroy]
+  after_action :verify_authorized
+
   respond_to :json
 
   # GET /articles
   def index
     @articles = Article.all
+    authorize @articles
 
     render json: @articles
   end
@@ -17,6 +20,7 @@ class Api::V1::ArticlesController < ApplicationController
   # POST /articles
   def create
     @article = Article.new(article_params)
+    authorize @article
 
     if @article.save
       render json: @article, status: :created, location: :api_v1_articles
@@ -44,10 +48,11 @@ class Api::V1::ArticlesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_article
     @article = Article.find(params[:id])
+    authorize @article
   end
 
   # Only allow a trusted parameter "white list" through.
   def article_params
-    params.require(:article).permit(:title, :user_id, :featured, :spotlighted, :content, :feature_image, :status)
+    params.require(:article).permit(:title, :user_id, :featured, :spotlighted, :content, :feature_image, :status, :tags)
   end
 end

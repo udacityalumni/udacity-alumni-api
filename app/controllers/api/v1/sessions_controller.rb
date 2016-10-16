@@ -21,7 +21,7 @@ class Api::V1::SessionsController < ApplicationController
       user.save
       head 204
     else
-      render json: { errors: 'That token was already destroyed' }, status: 404
+      render json: { errors: 'An error occured while deleting the token' }, status: 404
     end
   end
 
