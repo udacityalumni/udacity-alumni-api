@@ -15,9 +15,12 @@ QueryType = GraphQL::ObjectType.define do
     end
   end
   field :tags, types[TagType] do
-    Tag.all
+    resolve -> (obj, args, ctx) do
+      Tag.all
+    end
   end
   field :tag, TagType do
+    argument :id, types.ID
     resolve -> (obj, args, ctx) do
       tag = Tag.find_by(id: args[:id])
       tag

@@ -10,6 +10,6 @@ ArticleType = GraphQL::ObjectType.define do
   field :feature_image, types.String, 'The featured image for the article'
   field :created_at, types.String, 'The date the article was created'
   field :updated_at, types.String, 'The date the article was updated'
-  field :featured, types.Bool, 'The featured status of the article'
-  field :tags, types[TagType], 'Tags associated with the article'
+  field :featured, types.Boolean, 'The featured status of the article'
+  field :tags, -> { types[TagType] }, 'Tags associated with the article'
 end
