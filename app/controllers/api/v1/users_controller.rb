@@ -25,7 +25,7 @@ class Api::V1::UsersController < ApplicationController
       render json: current_user,
              serializer: UserSerializer,
              status: 200,
-             location: [:api_v1, current_user]
+             location: :api_v1_users
     else
       render json: { errors: current_user.errors }, status: 422
     end
