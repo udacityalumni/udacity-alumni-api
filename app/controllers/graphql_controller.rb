@@ -1,5 +1,4 @@
-class GraphQLController < ApplicationController
-  skip_before_action :verify_authenticity_token
+class GraphqlController < ApplicationController
 
   def new
   end
@@ -7,7 +6,7 @@ class GraphQLController < ApplicationController
   def create
     query_string = params[:query]
     query_variables = ensure_hash(params[:variables])
-    result = MeetupEventPlannerSchema.execute(
+    result = AlumniApiSchema.execute(
       query_string,
       variables: query_variables,
       context: { }
