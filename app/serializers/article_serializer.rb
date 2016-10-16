@@ -3,4 +3,5 @@ class ArticleSerializer < ActiveModel::Serializer
              :spotlighted, :content, :feature_image,
              :status, :slug, :user,
              :created_at, :updated_at
+  has_many :tags
 end
