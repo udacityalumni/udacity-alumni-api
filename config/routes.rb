@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :articles, only: [:index, :show, :create, :update, :destroy]
       resource :users, only: [:show, :create, :update]
       resource :sessions, only: [:create, :destroy]
+      resources :spotlight_images, only: [:index, :create, :destroy]
     end
   end
 end
