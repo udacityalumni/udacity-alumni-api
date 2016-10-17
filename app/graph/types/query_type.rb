@@ -5,12 +5,11 @@ QueryType = GraphQL::ObjectType.define do
   field :articles, types[ArticleType] do
     argument :tag, types.String
     resolve -> (obj, args, ctx) do
-      articles = Article.all
       if args[:tag]
         tag = Tag.where(tag: args[:tag]).first
         tag.articles
       else
-        articles
+        Article.all
       end
     end
   end
