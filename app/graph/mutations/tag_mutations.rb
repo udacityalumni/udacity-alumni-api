@@ -23,7 +23,11 @@ module TagMutations
     return_field :tags, types[TagType]
 
     resolve -> (inputs, ctx) do
-      
+      tags = inputs[:tags]
+      tags.each do |tag|
+        Tag.find_or_create_by(tag: tag.value)
+      end
+      Tag.all
     end
   end
 end
