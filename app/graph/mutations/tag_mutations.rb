@@ -16,4 +16,14 @@ module TagMutations
       tags
     end
   end
+  SaveAll = GraphQL::Relay::Mutation.define do
+    name 'SaveAll'
+    input_field :tags, types[TagInputType]
+    input_field :auth_token, !types.String
+    return_field :tags, types[TagType]
+
+    resolve -> (inputs, ctx) do
+      
+    end
+  end
 end
