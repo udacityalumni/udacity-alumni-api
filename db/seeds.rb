@@ -51,13 +51,32 @@ User.create(
 #   ]
 # }
 #
+
+tags = [
+  'Software Engineering',
+  'Open Source',
+  'Mobile',
+  'Web',
+  'Machine Learning',
+  'Data Analysis',
+  'JavaScript',
+  'React',
+  'GraphQL',
+  'Ruby on Rails'
+]
+10.times.each_with_index do |index|
+  Tag.create(
+    tag: tags[index]
+  )
+end
+
 statuses = *(0..2)
 spotlighted_count = 0
 10.times do
   title = FFaker::HealthcareIpsum.words.map(&:capitalize).join(' ')
   featured = [true, false, false].sample
-  spotlighted = [true, false].sample
-  if spotlighted && spotlighted_count <= 3
+  spotlighted_options = [true, false].sample
+  if spotlighted_options && spotlighted_count <= 3
     spotlighted_count += 1
     spotlighted = true
   else
@@ -67,7 +86,7 @@ spotlighted_count = 0
     user: User.all.sample,
     title: title,
     featured: featured,
-    spotlighted: featured,
+    spotlighted: spotlighted,
     status: statuses.sample,
     content: FFaker::HealthcareIpsum.paragraph,
     feature_image: FFaker::Avatar.image
