@@ -20,13 +20,6 @@ class Api::V1::ArticlesController < ApplicationController
   # POST /articles
   def create
     @article = Article.new(article_params)
-    @tags = article_params[:tags]
-    if @tags
-      @tags.each do |tag|
-        tag = Tag.find_or_create_by(tag: tag.tag)
-        @article.tags << tag
-      end
-    end
     authorize @article
 
     if @article.save
