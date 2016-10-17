@@ -5,6 +5,7 @@ ArticleType = GraphQL::ObjectType.define do
   field :status, ArticleStatusEnumType, 'The article status'
   field :slug, types.String, 'The article slug'
   field :content, types.String, 'The content of the article'
+  field :json, types.String, 'The json content of the article'
   field :title, types.String, 'The title of the article'
   field :user, UserType, 'The user who posted the article'
   field :feature_image, types.String, 'The featured image for the article'
