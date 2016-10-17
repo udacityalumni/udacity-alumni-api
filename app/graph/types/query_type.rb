@@ -4,10 +4,13 @@ QueryType = GraphQL::ObjectType.define do
 
   field :articles, types[ArticleType] do
     argument :tag, types.String
+    argument :id, types.ID
     resolve -> (obj, args, ctx) do
       if args[:tag]
         tag = Tag.where(tag: args[:tag]).first
         tag.articles
+      elsif args[:id]
+        Article.find_by_id(args[:id])
       else
         Article.all
       end
