@@ -89,6 +89,7 @@ spotlighted_count = 0
     spotlighted: spotlighted,
     status: statuses.sample,
     content: FFaker::HealthcareIpsum.paragraph,
-    feature_image: FFaker::Avatar.image
+    feature_image: FFaker::Avatar.image,
+    tags: Tag.all.sample(4)
   )
 end
