@@ -2,10 +2,9 @@ class Api::V1::SpotlightImagesController < ApplicationController
 
   # Return all spotlight_images
   def index
-    auth_token = request.headers['Authorization']
     all_spotlight_images = SpotlightImage.all
 
-    if auth_token
+    if all_spotlight_images
       render json: {
         spotlight_images: ActiveModel::Serializer::CollectionSerializer.new(
           all_spotlight_images,
