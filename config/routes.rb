@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   # Bootstrap graphql and the graphiql editor
   mount GraphiQL::Rails::Engine, at: '/graphiql', graphql_path: '/graphql'
+  root to: redirect('/graphiql')
   resources :graphql
 
   namespace :api, defaults: { format: :json } do
