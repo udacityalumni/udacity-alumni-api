@@ -90,6 +90,6 @@ spotlighted_count = 0
     status: statuses.sample,
     content: FFaker::HealthcareIpsum.paragraph,
     feature_image: FFaker::Avatar.image,
-    tags: Tag.all.sample(4)
+    tags: Tag.all.sample(4).uniq(&:tag)
   )
 end
