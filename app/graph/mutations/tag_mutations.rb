@@ -23,7 +23,7 @@ module TagMutations
     return_field :tags, types[TagType]
 
     resolve -> (inputs, ctx) do
-      tags = inputs[:tags]
+      tags = inputs[:tags].to_a
       user = User.find_by(auth_token: inputs[:auth_token])
       tags.each do |tag|
         Tag.find_or_create_by(tag: tag.tag, user: user)
