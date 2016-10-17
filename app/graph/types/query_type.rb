@@ -3,8 +3,15 @@ QueryType = GraphQL::ObjectType.define do
   description 'The root level query type'
 
   field :articles, types[ArticleType] do
+    argument :tag, types.String
     resolve -> (obj, args, ctx) do
-      Article.all
+      articles = Article.all
+      if args[:tag]
+        tag = Tag.where(tag: args[:tag]).first
+        tag.articles
+      else
+        articles
+      end
     end
   end
   field :article, ArticleType do
