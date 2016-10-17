@@ -24,8 +24,9 @@ module TagMutations
 
     resolve -> (inputs, ctx) do
       tags = inputs[:tags]
+      user = User.find_by(auth_token: inputs[:auth_token])
       tags.each do |tag|
-        Tag.find_or_create_by(tag: tag.value)
+        Tag.find_or_create_by(tag: tag.tag, user: user)
       end
       Tag.all
     end
