@@ -19,9 +19,15 @@ QueryType = GraphQL::ObjectType.define do
     resolve -> (obj, args, ctx) do
       articles = Article.where(spotlighted: false, status: 'published')
       if args[:first]
-        articles.first(args[:first])
+        {
+          articles: articles.first(args[:first]),
+          count: articles.count
+        }
       else
-        articles
+        {
+          articles: articles,
+          count: articles.count
+        }
       end
     end
   end
