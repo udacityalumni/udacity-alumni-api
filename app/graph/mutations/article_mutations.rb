@@ -8,7 +8,7 @@ module ArticleMutations
     return_field :article, ArticleType
     resolve -> (inputs, ctx) do
       user = User.find_by(auth_token: inputs[:auth_token])
-      article_inputs = inputs[:article]
+      article_inputs = inputs[:article].to_h
       if user
         article = Article.find_by_id(inputs[:id])
         article.update(article_inputs)
