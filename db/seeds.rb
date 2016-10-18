@@ -3,6 +3,7 @@ User.create(
   email: 'forbiddenvoid@gmail.com',
   password: 'Password'
 )
+
 User.create(
   name: 'Ryan Collins',
   email: 'admin@ryancollins.io',
@@ -10,6 +11,7 @@ User.create(
   bio: 'Experienced Software Engineer specializing in implementing cutting-edge technologies in a multitude of domains, focusing on Front End Web Development and UI / UX.',
   avatar: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAQyAAAAJDU3YWY4Nzk1LWQ0YzEtNGIyMy1iOWI3LTBmMTllMmI1Y2Q5NQ.jpg'
 )
+
 User.create(
   name: 'Andreas Daimainger',
   email: 'andreas@gmail.com',
@@ -26,49 +28,64 @@ User.create(
   avatar: 'http://data.whicdn.com/images/88776105/superthumb.jpg'
 )
 
-# Articles
-# ===================================
-# {
-#   articles: [
-#     {
-#       id: 1,
-#       title: 'Foo Bar, Reimagined',
-#       slug: 'foo-bar-reimagined',
-#       user: {
-#         avatar: 'http://1onjea25cyhx3uvxgs4vu325.wpengine.netdna-cdn.com/wp-content/uploads/2016/05/image08.png',
-#         name: 'David Harris'
-#       },
-#       content: '## Foo bar, reimagined.  Oh yeah!  _So_ cool.  The presidential candidates announced just last night that foo bar will... ![Foo Bar](http://www.techspot.com/images2/downloads/topdownload/2014/07/foobar.png)',
-#       excerpt: 'Oh yeah!  _So_ cool.  The presidential candidates',
-#       status: 'Published',
-#       featureImage: 'http://foobar.iiitd.edu.in/contest/images/FooBarLogo_cropped.png',
-#       spotlighted: true,
-#       featured: true
-#     },
-#    {
-#      ...
-#    }
-#   ]
-# }
-#
+tags = [
+  'Software Engineering',
+  'Open Source',
+  'Mobile',
+  'Web',
+  'Machine Learning',
+  'Data Analysis',
+  'JavaScript',
+  'React',
+  'GraphQL',
+  'Ruby on Rails'
+]
+10.times.each_with_index do |index|
+  Tag.create(
+    tag: tags[index]
+  )
+end
+
+SpotlightImage.create(
+  url: 'https://github.com/RyanCCollins/cdn/blob/master/alumni-webapp/Udacity-Self-Driving-Car-Engineer-Nanodegree-800x333.jpg?raw=true',
+  user: User.first
+)
+
+SpotlightImage.create(
+  url: 'https://github.com/RyanCCollins/cdn/blob/master/alumni-webapp/VRDeveloperNanodegreeProgram.png?raw=true',
+  user: User.first
+)
+
+SpotlightImage.create(
+  url: 'https://github.com/RyanCCollins/cdn/blob/master/alumni-webapp/deeplearning.jpg?raw=true',
+  user: User.first
+)
+
+SpotlightImage.create(
+  url: 'https://github.com/RyanCCollins/cdn/blob/master/alumni-webapp/seniorweb.gif?raw=true',
+  user: User.first
+)
+
 statuses = *(0..2)
-featured_count = 0
+spotlighted_count = 0
 10.times do
   title = FFaker::HealthcareIpsum.words.map(&:capitalize).join(' ')
   featured = [true, false, false].sample
-  if featured && featured_count <= 3
-    featured_count += 1
-    featured = true
+  spotlighted_options = [true, false].sample
+  if spotlighted_options && spotlighted_count <= 3
+    spotlighted_count += 1
+    spotlighted = true
   else
-    featured = false
+    spotlighted = false
   end
   Article.create(
     user: User.all.sample,
     title: title,
     featured: featured,
-    spotlighted: featured,
+    spotlighted: spotlighted,
     status: statuses.sample,
     content: FFaker::HealthcareIpsum.paragraph,
-    feature_image: FFaker::Avatar.image
+    feature_image: FFaker::Avatar.image,
+    tags: Tag.all.sample(4).uniq(&:tag)
   )
 end

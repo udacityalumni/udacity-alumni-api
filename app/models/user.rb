@@ -19,6 +19,8 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+  # Admin User will have => many spotlight images
+  has_many :spotlight_images
 
   def generate_auth_token!
     self.auth_token = Devise.friendly_token

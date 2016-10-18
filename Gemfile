@@ -7,6 +7,8 @@ gem 'pg'
 gem 'puma', '~> 3.0'
 gem 'rack-cors'
 gem 'ffaker'
+gem 'graphql'
+gem 'graphiql-rails'
 
 group :test do
   gem 'database_cleaner', '~> 1.5.3'
