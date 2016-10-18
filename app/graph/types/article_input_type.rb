@@ -1,4 +1,4 @@
-ArticleInputType = GraphQL::InputType.define do
+ArticleInputType = GraphQL::InputObjectType.define do
   name 'ArticleInput'
   description 'The input for articles for the site'
   input_field :status, ArticleStatusEnumType, 'The article status'
