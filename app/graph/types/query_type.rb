@@ -16,7 +16,7 @@ QueryType = GraphQL::ObjectType.define do
   end
   field :articleFeedCount, types.Int do
     resolve -> (obj, args, ctx) {
-      Article.where(status: 'published', spotlighted: false)
+      Article.where(status: 'published', spotlighted: false).count
     }
   end
   field :articleFeed, types[ArticleType] do
