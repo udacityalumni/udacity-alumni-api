@@ -4,12 +4,24 @@ QueryType = GraphQL::ObjectType.define do
 
   field :articles, types[ArticleType] do
     argument :tag, types.String
+
     resolve -> (obj, args, ctx) do
       if args[:tag]
         tag = Tag.where(tag: args[:tag]).first
         tag.articles
       else
         Article.all
+      end
+    end
+  end
+  field :articleFeed, types[ArticleType] do
+    argument :first, types.Int
+    resolve -> (obj, args, ctx) do
+      articles = Article.where(spotlighted: false, status: 'published')
+      if args[:first]
+        articles.first(args[:first])
+      else
+        articles
       end
     end
   end
