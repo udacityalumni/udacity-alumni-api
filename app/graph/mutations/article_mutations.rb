@@ -21,7 +21,7 @@ module ArticleMutations
         article.feature_image = article_inputs[:feature_image] if article_inputs[:feature_image]
         if article_inputs[:tags]
           article_inputs[:tags].to_a.each do |tag|
-            article.tags.find_or_create_by(tag: tag.tag)
+            article.tags.find_or_create_by(tag: tag.to_h["tag"])
           end
           article.tags.save!
         end
@@ -55,7 +55,7 @@ module ArticleMutations
         article.feature_image = article_inputs[:feature_image] if article_inputs[:feature_image]
         if article_inputs[:tags]
           article_inputs[:tags].to_a.each do |tag|
-            article.tags.find_or_create_by(tag: tag.tag)
+            article.tags.find_or_create_by(tag: tag.to_h["tag"])
           end
           article.tags.save!
         end
