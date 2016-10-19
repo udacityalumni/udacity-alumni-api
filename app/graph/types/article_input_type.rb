@@ -9,5 +9,4 @@ ArticleInputType = GraphQL::InputObjectType.define do
   input_field :spotlighted, types.Boolean, 'Whether the article is spotlighted'
   input_field :featured, types.Boolean, 'Whether the article is featured'
   input_field :tags, -> { types[TagInputType] }, 'Tags associated with the article'
-  input_field :user, UserInputType, 'The user that created the article'
 end
