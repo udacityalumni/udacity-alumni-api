@@ -9,4 +9,11 @@ class Article < ApplicationRecord
   def slug
     title.parameterize
   end
+
+  def autosave_associated_records_for_tags
+    tags.each do |tag|
+      self.tags << Tag.find_or_create_by_tag(tag: tag.tag)
+    end
+    self.tags.save!
+  end
 end
