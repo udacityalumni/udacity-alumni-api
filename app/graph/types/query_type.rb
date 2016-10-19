@@ -49,4 +49,16 @@ QueryType = GraphQL::ObjectType.define do
       tag
     end
   end
+  field :spotlightImages, types[SpotlightImageType] do
+    resolve -> (obj, args, ctx) do
+      SpotlightImage.all
+    end
+  end
+  field :spotlightImage, SpotlightImageType do
+    argument :id, types.ID
+    resolve -> (obj, args, ctx) do
+      image = SpotlightImage.find_by(id: args[:id])
+      image
+    end
+  end
 end
