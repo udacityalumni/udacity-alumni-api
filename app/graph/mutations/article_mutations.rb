@@ -1,4 +1,7 @@
 module ArticleMutations
+  def article_updater(article_inputs)
+
+  end
   Create = GraphQL::Relay::Mutation.define do
     name 'CreateArticle'
     input_field :auth_token, !types.String
@@ -21,7 +24,8 @@ module ArticleMutations
         article.feature_image = article_inputs[:feature_image] if article_inputs[:feature_image]
         if article_inputs[:tags]
           article_inputs[:tags].to_a.each do |tag|
-            article.tags.find_or_create_by(tag: tag.to_h["tag"])
+            tag = Tag.find_or_create_by(tag: tag.to_h["tag"])
+            article.tags << tag
           end
         end
         article.save!
@@ -54,7 +58,8 @@ module ArticleMutations
         article.feature_image = article_inputs[:feature_image] if article_inputs[:feature_image]
         if article_inputs[:tags]
           article_inputs[:tags].to_a.each do |tag|
-            article.tags.find_or_create_by(tag: tag.to_h["tag"])
+            tag = Tag.find_or_create_by(tag: tag.to_h["tag"])
+            article.tags << tag
           end
         end
         article.save!
