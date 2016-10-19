@@ -23,7 +23,6 @@ module ArticleMutations
           article_inputs[:tags].to_a.each do |tag|
             article.tags.find_or_create_by(tag: tag.to_h["tag"])
           end
-          article.tags.save!
         end
         article.save!
         {
@@ -57,7 +56,6 @@ module ArticleMutations
           article_inputs[:tags].to_a.each do |tag|
             article.tags.find_or_create_by(tag: tag.to_h["tag"])
           end
-          article.tags.save!
         end
         article.save!
         {
