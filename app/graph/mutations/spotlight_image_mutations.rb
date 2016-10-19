@@ -1,5 +1,6 @@
 module SpotlightImageMutations
   Create = GraphQL::Relay::Mutation.define do
+    name 'CreateSpotlightImage'
     input_field :auth_token, !types.String
     input_field :url, !types.String
 
@@ -14,6 +15,7 @@ module SpotlightImageMutations
     end
   end
   Update = GraphQL::Relay::Mutation.define do
+    name 'UpdateSpotlightImage'
     input_field :auth_token, !types.String
     input_field :id, !types.ID
     input_field :url, !types.String
@@ -27,14 +29,15 @@ module SpotlightImageMutations
     end
   end
   Delete = GraphQL::Relay::Mutation.define do
+    name 'DeleteSpotlightImage'
     input_field :auth_token, !types.String
     input_field :id, !types.ID
 
-    return_field :deletedId, !types.ID
+    return_field :deleted_id, !types.ID
 
     image = SpotlightImage.find_by_id(inputs[:id])
-    deletedId = image.id
+    deleted_id = image.id
     image.destroy
-    deletedId
+    deleted_id
   end
 end
