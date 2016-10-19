@@ -10,10 +10,9 @@ class Article < ApplicationRecord
     title.parameterize
   end
 
-  def autosave_associated_records_for_tags
-    tags.each do |tag|
-      self.tags << Tag.find_or_create_by(tag: tag.tag)
-    end
+  def autosave_associated_records_for_tag
+    new_tag = Tag.find_or_create_by(tag: tag.tag)
+    self.tags << new_tag
     self.tags.save!
   end
 end
