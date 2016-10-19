@@ -35,9 +35,11 @@ module SpotlightImageMutations
 
     return_field :deleted_id, !types.ID
 
-    image = SpotlightImage.find_by_id(inputs[:id])
-    deleted_id = image.id
-    image.destroy
-    deleted_id
+    resolve -> (inputs, ctx) do
+      image = SpotlightImage.find_by_id(inputs[:id])
+      deleted_id = image.id
+      image.destroy
+      deleted_id
+    end
   end
 end
