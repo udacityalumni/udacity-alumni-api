@@ -11,11 +11,11 @@ module ArticleMutations
       article_inputs = inputs[:article].to_h
       if user
         article = Article.create(
-          title: article_inputs.title,
-          content: article_inputs.content,
-          json: article_inputs.json,
-          status: article_inputs.status,
-          spotlighted: article_inputs.spotlighted
+          title: article_inputs[:title],
+          content: article_inputs[:content],
+          json: article_inputs[:json],
+          status: article_inputs[:status],
+          spotlighted: article_inputs[:spotlighted]
         )
         article.user = user
         article.feature_image = article_inputs[:feature_image] if article_inputs[:feature_image]
@@ -45,11 +45,11 @@ module ArticleMutations
       if user
         article = Article.find_by_id(inputs[:id])
         article.update(
-          title: article_inputs.title,
-          content: article_inputs.content,
-          json: article_inputs.json,
-          status: article_inputs.status,
-          spotlighted: article_inputs.spotlighted
+          title: article_inputs[:title],
+          content: article_inputs[:content],
+          json: article_inputs[:json],
+          status: article_inputs[:status],
+          spotlighted: article_inputs[:spotlighted]
         )
         article.user = user
         article.feature_image = article_inputs[:feature_image] if article_inputs[:feature_image]

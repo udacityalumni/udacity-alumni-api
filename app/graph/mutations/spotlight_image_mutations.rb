@@ -9,8 +9,8 @@ module SpotlightImageMutations
       user = User.find_by(auth_token: inputs[:auth_token])
       image = SpotlightImage.new(
         url: inputs[:url],
-        user: user
       )
+      image.user = user
       image.save!
       {
         spotlight_image: image
