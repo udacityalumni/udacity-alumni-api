@@ -20,6 +20,7 @@ module Alumniapi
   class Application < Rails::Application
     config.autoload_paths << Rails.root.join('app/graph')
     config.autoload_paths << Rails.root.join('app/graph/types')
+    config.autoload_paths << Rails.root.join('app/graph/mutations')
     config.autoload_paths << Rails.root.join('app/graph/queries')
     config.api_only = false
     config.middleware.insert_before 0, Rack::Cors do
