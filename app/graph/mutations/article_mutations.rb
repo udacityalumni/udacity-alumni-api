@@ -77,10 +77,11 @@ module ArticleMutations
     resolve -> (inputs, ctx) do
       article = Article.find_by_id(inputs[:id])
       id = article.id
-      article.destroy
-      {
-        deleted_id: id
-      }
+      if article.destroy
+        {
+          deleted_id: id
+        }
+      end
     end
   end
 end
