@@ -61,4 +61,10 @@ QueryType = GraphQL::ObjectType.define do
       image
     end
   end
+  field :authUser, AuthUserType do
+    argument :auth_token, !types.String
+    resolve -> (obj, args, ctx) do
+      User.find_by(auth_token: args[:auth_token])
+    end
+  end
 end
