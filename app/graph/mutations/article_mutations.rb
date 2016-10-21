@@ -1,7 +1,4 @@
 module ArticleMutations
-  def article_updater(article_inputs)
-
-  end
   Create = GraphQL::Relay::Mutation.define do
     name 'CreateArticle'
     input_field :auth_token, !types.String
