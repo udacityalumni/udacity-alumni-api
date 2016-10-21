@@ -11,4 +11,6 @@ MutationType = GraphQL::ObjectType.define do
   field :CreateSpotlightImage, field: SpotlightImageMutations::Create.field
   field :UpdateSpotlightImage, field: SpotlightImageMutations::Update.field
   field :DeleteSpotlightImage, field: SpotlightImageMutations::Delete.field
+
+  field :UpdateProfile, field: AuthUserMutations::UpdateProfile.field
 end
