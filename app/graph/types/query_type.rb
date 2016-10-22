@@ -4,11 +4,14 @@ QueryType = GraphQL::ObjectType.define do
 
   field :articles, types[ArticleType] do
     argument :tag, types.String
+    argument :first, types.Int
 
     resolve -> (obj, args, ctx) do
       if args[:tag]
         tag = Tag.where(tag: args[:tag]).first
         tag.articles
+      elsif args[:first]
+        Article.all.first(args[:first])
       else
         Article.all
       end
@@ -65,6 +68,17 @@ QueryType = GraphQL::ObjectType.define do
     argument :auth_token, !types.String
     resolve -> (obj, args, ctx) do
       User.find_by(auth_token: args[:auth_token])
+    end
+  end
+  field :publicUsers, types[UserType] do
+    resolve -> (obj, args, ctx) do
+      User.where(public: true)
+    end
+  end
+  field :user, UserType do
+    argument :id, !types.ID
+    resolve -> (obj, args, ctx) do
+      User.where(public: true, id: args[:id])
     end
   end
 end
