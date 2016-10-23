@@ -36,9 +36,14 @@ QueryType = GraphQL::ObjectType.define do
   end
   field :article, ArticleType do
     argument :id, types.ID
+    argument :slug, types.String
     resolve -> (obj, args, ctx) do
-      article = Article.find_by(id: args[:id])
-      article
+      if args[:id]
+        article = Article.find_by(id: args[:id])
+        article
+      else
+        article = Article.find_by(slug: args[:slug])
+      end
     end
   end
   field :tags, types[TagType] do

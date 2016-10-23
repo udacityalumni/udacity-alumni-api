@@ -1,13 +1,14 @@
 class Article < ApplicationRecord
   belongs_to :user
+  before_create :create_slug
   has_and_belongs_to_many :tags
   accepts_nested_attributes_for :tags
   # The default status is Draft, so the order needs
     # to stay as it is for now.
   enum status: [:draft, :published, :archived]
 
-  def slug
-    title.parameterize
+  def create_slug
+    self.slug = self.title.parameterize
   end
 
   def autosave_associated_records_for_tag
