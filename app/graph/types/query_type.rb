@@ -7,13 +7,14 @@ QueryType = GraphQL::ObjectType.define do
     argument :first, types.Int
 
     resolve -> (obj, args, ctx) do
+      articles = Article.where(status: 'published')
       if args[:tag]
         tag = Tag.where(tag: args[:tag]).first
-        tag.articles
+        tag.articles.where(status: 'published')
       elsif args[:first]
-        Article.all.first(args[:first])
+        articles.first(args[:first])
       else
-        Article.all
+        articles
       end
     end
   end
