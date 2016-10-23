@@ -25,6 +25,8 @@ module ArticleMutations
             article.tags << tag
           end
         end
+        # Make sure tags are unique
+        article.tags = article.tags.uniq{ |art| art.tag }
         article.save!
         {
           article: article
@@ -59,6 +61,8 @@ module ArticleMutations
             article.tags << tag
           end
         end
+        # Make sure tags are unique
+        article.tags = article.tags.uniq{ |art| art.tag }
         article.save!
         {
           article: article
