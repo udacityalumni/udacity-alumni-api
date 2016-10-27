@@ -12,6 +12,10 @@ Rails.application.routes.draw do
       resource :users, only: [:show, :create, :update]
       resource :sessions, only: [:create, :destroy]
       resources :spotlight_images, only: [:index, :create, :destroy]
+
+      scope :auth do
+        get 'is_signed_in', to: 'auth#is_signed_in?'
+      end
     end
   end
 end
