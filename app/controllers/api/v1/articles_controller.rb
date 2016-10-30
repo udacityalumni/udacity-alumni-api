@@ -58,5 +58,6 @@ class Api::V1::ArticlesController < ApplicationController
                                     :content, :json,
                                     :feature_image, :status,
                                     :tags)
+                                    tags_attributes: [:tag])
   end
 end

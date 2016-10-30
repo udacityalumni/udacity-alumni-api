@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root to: redirect('/graphiql')
   resources :graphql
 
-#  get '/wiki', to: redirect("http://0.0.0.0:4567"), as: :wiki
+  #  get '/wiki', to: redirect("http://0.0.0.0:4567"), as: :wiki
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
@@ -16,6 +16,10 @@ Rails.application.routes.draw do
       resource :users, only: [:show, :create, :update]
       resource :sessions, only: [:create, :destroy]
       resources :spotlight_images, only: [:index, :create, :destroy]
+
+      scope :auth do
+        get 'is_signed_in', to: 'auth#is_signed_in?'
+      end
     end
   end
 end

@@ -20,6 +20,7 @@ module Alumniapi
   class Application < Rails::Application
     config.autoload_paths << Rails.root.join('app/graph')
     config.autoload_paths << Rails.root.join('app/graph/types')
+    config.autoload_paths << Rails.root.join('app/graph/mutations')
     config.autoload_paths << Rails.root.join('app/graph/queries')
     config.api_only = false
     config.middleware.insert_before 0, Rack::Cors do
@@ -40,6 +41,11 @@ module Alumniapi
                        controller_specs: true,
                        request_specs: false
       g.fixture_replacement :factory_girl, dir: "spec/factories"
+    end
+
+    # prepare Devise to accept json requests
+    config.to_prepare do
+      DeviseController.respond_to :html, :json
     end
   end
 end
