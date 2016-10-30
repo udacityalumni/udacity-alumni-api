@@ -40,3 +40,5 @@ gem 'pundit'
 gem 'active_model_serializers'
 
 gem 'dotenv-rails', :groups => [:development, :test]
+
+gem 'gollum'
