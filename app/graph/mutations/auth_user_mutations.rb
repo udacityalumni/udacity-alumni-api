@@ -13,7 +13,7 @@ module AuthUserMutations
       @user.avatar = args[:profile][:avatar] if args[:profile][:avatar]
       @user.email = args[:profile][:email] if args[:profile][:email]
       public_input = args[:profile][:public]
-      @user.public = public_input if args[:profile][:public]
+      @user.public = public_input if args[:profile][:public] != nil
       @user.save!
       {
         user: @user
