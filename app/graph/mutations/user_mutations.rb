@@ -29,10 +29,12 @@ module UserMutations
     return_field :user, AuthUserType
     resolve -> (inputs, _ctx) do
       user = User.find_by(reset_password_token: inputs[:token])
+      password = inputs[:password]
+      password_confirmation = inputs[:password_confirmation]
       if user && user.valid_password?(password)
         user.update(
-          password: inputs[:password],
-          password_confirmation: inputs[:password_confirmation]
+          password: password,
+          password_confirmation: password_confirmation
         )
         user.reset_password_token = nil
         user.save!
