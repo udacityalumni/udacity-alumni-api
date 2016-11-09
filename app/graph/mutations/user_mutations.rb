@@ -28,17 +28,14 @@ module UserMutations
 
     return_field :user, AuthUserType
     resolve -> (inputs, _ctx) do
-      user = User.find_by(reset_password_token: inputs[:token])
-      password = inputs[:password]
-      password_confirmation = inputs[:password_confirmation]
-      if user && user.valid_password?(password)
-        user.update(
-          password: password,
-          password_confirmation: password_confirmation
+      user = User.with_reset_password_token(inputs[:token])
+      if user
+        User.reset_password_by_token(
+          reset_password_token: inputs[:token],
+          password: inputs[:password],
+          password_confirmation: inputs[:password_confirmation]
         )
-        user.reset_password_token = nil
-        user.save!
-        sign_in_user! user
+        user.reload
         {
           user: user
         }
