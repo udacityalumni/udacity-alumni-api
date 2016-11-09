@@ -77,7 +77,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # ActionMailer config
-  config.action_mailer.default_url_options = { host: 'http://www.udacity.com' } # TODO update host
+  config.action_mailer.default_url_options = { host: 'http://udacity-api.herokuapp.com' } # TODO update host
   config.action_mailer.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
       user_name: ENV['SENDGRID_USERNAME'],
