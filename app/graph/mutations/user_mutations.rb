@@ -39,6 +39,10 @@ module UserMutations
         {
           user: user
         }
+      else
+        {
+          user: nil
+        }
       end
     end
   end
