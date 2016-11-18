@@ -1,4 +1,4 @@
-AlumniApiSchema = GraphQL::Schema.new(
+AlumniApiSchema = GraphQL::Schema.define(
   query: QueryType,
   mutation: MutationType
 )
