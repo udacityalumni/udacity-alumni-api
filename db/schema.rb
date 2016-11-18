@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161023165045) do
+ActiveRecord::Schema.define(version: 20161118011519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(version: 20161023165045) do
     t.integer "tag_id",     null: false
     t.index ["article_id", "tag_id"], name: "index_articles_tags_on_article_id_and_tag_id", using: :btree
     t.index ["tag_id", "article_id"], name: "index_articles_tags_on_tag_id_and_article_id", using: :btree
+  end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.text     "description"
+    t.string   "url"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["user_id"], name: "index_feedbacks_on_user_id", using: :btree
   end
 
   create_table "spotlight_images", force: :cascade do |t|
@@ -75,5 +84,6 @@ ActiveRecord::Schema.define(version: 20161023165045) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "feedbacks", "users"
   add_foreign_key "spotlight_images", "users"
 end

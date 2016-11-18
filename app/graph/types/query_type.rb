@@ -6,7 +6,7 @@ QueryType = GraphQL::ObjectType.define do
     argument :tag, types.String
     argument :first, types.Int
 
-    resolve -> (obj, args, ctx) do
+    resolve -> (_obj, args, _ctx) do
       articles = Article.where(status: 'published')
       if args[:tag]
         tag = Tag.where(tag: args[:tag]).first
@@ -19,13 +19,13 @@ QueryType = GraphQL::ObjectType.define do
     end
   end
   field :articleFeedCount, types.Int do
-    resolve -> (obj, args, ctx) {
+    resolve -> (_obj, args, _ctx) {
       Article.where(status: 'published', spotlighted: false).count
     }
   end
   field :articleFeed, types[ArticleType] do
     argument :first, types.Int
-    resolve -> (obj, args, ctx) do
+    resolve -> (_obj, args, _ctx) do
       articles = Article.where(spotlighted: false, status: 'published')
       if args[:first]
         articles.first(args[:first])
@@ -37,7 +37,7 @@ QueryType = GraphQL::ObjectType.define do
   field :article, ArticleType do
     argument :id, types.ID
     argument :slug, types.String
-    resolve -> (obj, args, ctx) do
+    resolve -> (_obj, args, _ctx) do
       if args[:slug]
         Article.find_by(slug: args[:slug])
       else
@@ -46,44 +46,53 @@ QueryType = GraphQL::ObjectType.define do
     end
   end
   field :tags, types[TagType] do
-    resolve -> (obj, args, ctx) do
+    resolve -> (_obj, args, _ctx) do
       Tag.all
     end
   end
   field :tag, TagType do
     argument :id, types.ID
-    resolve -> (obj, args, ctx) do
+    resolve -> (_obj, args, _ctx) do
       tag = Tag.find_by(id: args[:id])
       tag
     end
   end
   field :spotlightImages, types[SpotlightImageType] do
-    resolve -> (obj, args, ctx) do
+    resolve -> (_obj, args, _ctx) do
       SpotlightImage.all
     end
   end
   field :spotlightImage, SpotlightImageType do
     argument :id, types.ID
-    resolve -> (obj, args, ctx) do
+    resolve -> (_obj, args, _ctx) do
       image = SpotlightImage.find_by(id: args[:id])
       image
     end
   end
   field :authUser, AuthUserType do
     argument :auth_token, !types.String
-    resolve -> (obj, args, ctx) do
+    resolve -> (_obj, args, _ctx) do
       User.find_by(auth_token: args[:auth_token])
     end
   end
   field :publicUsers, types[UserType] do
-    resolve -> (obj, args, ctx) do
+    resolve -> (_obj, args, _ctx) do
       User.where(public: true)
     end
   end
   field :user, UserType do
     argument :id, !types.ID
-    resolve -> (obj, args, ctx) do
+    resolve -> (_obj, args, _ctx) do
       User.where(public: true, id: args[:id])
+    end
+  end
+  field :feedback, types[FeedbackType] do
+    argument :auth_token, !types.String
+    resolve -> (_obj, args, _ctx) do
+      user = User.find_by(auth_token: args[:auth_token])
+      if user && user.role == 'admin'
+        Feedback.all
+      end
     end
   end
 end

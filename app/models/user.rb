@@ -21,6 +21,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   # Admin User will have => many spotlight images
   has_many :spotlight_images
+  has_many :feedback
 
   def generate_auth_token!
     self.auth_token = Devise.friendly_token
