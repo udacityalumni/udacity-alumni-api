@@ -83,7 +83,7 @@ QueryType = GraphQL::ObjectType.define do
   field :user, UserType do
     argument :id, !types.ID
     resolve -> (_obj, args, _ctx) do
-      User.where(public: true, id: args[:id])
+      User.where(public: true, id: args[:id]).first
     end
   end
   field :feedback, types[FeedbackType] do
