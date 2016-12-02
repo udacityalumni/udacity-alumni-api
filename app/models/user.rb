@@ -24,6 +24,8 @@ class User < ApplicationRecord
   has_many :feedbacks
   alias_attribute :feedback, :feedbacks
 
+  has_many :authentication_tokens
+
   def generate_auth_token!
     self.auth_token = Devise.friendly_token
   end
