@@ -6,11 +6,11 @@ class Api::V1::SpotlightImagesController < ApplicationController
 
     if all_spotlight_images
       render json: {
-        spotlight_images: ActiveModel::Serializer::CollectionSerializer.new(
-          all_spotlight_images,
-          each_serializer: SpotlightImageSerializer,
-          root: false
-        )
+          spotlight_images: ActiveModel::Serializer::CollectionSerializer.new(
+              all_spotlight_images,
+              each_serializer: SpotlightImageSerializer,
+              root: false
+          )
       }
     else
       render json: { errors: 'Invalid request' }, status: 422
@@ -20,7 +20,7 @@ class Api::V1::SpotlightImagesController < ApplicationController
   # Create a new spotlight image
   def create
     auth_token = request.headers['Authorization']
-    user = User.find_by(auth_token: auth_token)
+    user = AuthenticationToken.find_by(body: auth_token).user
     spotlight_image = user.spotlight_images.build(spotlight_image_params)
     if spotlight_image.save
       render json: spotlight_image,
@@ -34,14 +34,14 @@ class Api::V1::SpotlightImagesController < ApplicationController
   def delete
     auth_token = request.headers['Authorization']
     if auth_token.valid?
-    spotlight_image = SpotlightImage.find_by_id(params[:id])
-    if spotlight_image
-      render json: spotlight_image,
-             status: 201,
-             location: :api_v1_spotlight_images
-    else
-      render json: { errors: 'Invalid Request' }, status: 422
-    end
+      spotlight_image = SpotlightImage.find_by_id(params[:id])
+      if spotlight_image
+        render json: spotlight_image,
+               status: 201,
+               location: :api_v1_spotlight_images
+      else
+        render json: { errors: 'Invalid Request' }, status: 422
+      end
     else
       render json: { errors: 'Invalid Request' }, status: 422
     end

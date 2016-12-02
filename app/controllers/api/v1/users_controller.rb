@@ -3,7 +3,7 @@ class Api::V1::UsersController < ApplicationController
 
   def show
     auth_token = request.headers['Authorization']
-    current_user = User.find_by(auth_token: auth_token)
+    current_user = AuthenticationToken.find_by(body: auth_token).user
     if current_user
       respond_with current_user, serializer: UserSerializer
     else
