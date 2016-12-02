@@ -43,7 +43,7 @@ You must run the database setup scripts seperately.
 
 ```
 bundle install
-rake db:migrate db:seed
+rake db:setup
 ```
 
 ## Style and Linting
