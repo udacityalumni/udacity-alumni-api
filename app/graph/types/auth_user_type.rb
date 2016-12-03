@@ -6,7 +6,7 @@ AuthUserType = GraphQL::ObjectType.define do
   field :email, !types.String, 'The email of the user'
   field :bio, types.String, 'The bio of the user'
   field :avatar, types.String, 'The user avatar'
-  field :auth_token, types.String, 'The user auth token'
+  field :authentication_tokens, types[AuthenticationToken], 'The user auth tokens'
   field :role, !types.String, 'The user role'
   field :public, !types.Boolean, 'Whether the user is public or not'
 end

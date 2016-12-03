@@ -7,7 +7,8 @@ module TagMutations
     return_field :tags, types[TagType]
 
     resolve -> (inputs, ctx) do
-      user = User.find_by(auth_token: inputs[:auth_token])
+      auth_token = inputs[:auth_token]
+      user = AuthenticationToken.find_by(body: auth_token).user
       Tag.create(
         tag: inputs[:tag].tag,
         user: user
@@ -24,7 +25,8 @@ module TagMutations
 
     resolve -> (inputs, ctx) do
       tags = inputs[:tags].to_a
-      user = User.find_by(auth_token: inputs[:auth_token])
+      auth_token = inputs[:auth_token]
+      user = AuthenticationToken.find_by(body: auth_token).user
       tags.each do |tag|
         Tag.find_or_create_by(tag: tag.tag, user: user)
       end

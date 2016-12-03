@@ -27,7 +27,7 @@ class User < ApplicationRecord
   has_many :authentication_tokens
 
   def generate_auth_token!
-    self.auth_token = Devise.friendly_token
+    self.authentication_tokens << AuthenticationToken.create(body: Devise.friendly_token)
   end
 
   private
@@ -39,5 +39,4 @@ class User < ApplicationRecord
   def send_welcome_email
     NewUserSignupMailer.welcome_email(self).deliver_now
   end
-
 end

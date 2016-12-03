@@ -7,7 +7,8 @@ module ArticleMutations
     return_field :article, ArticleType
 
     resolve -> (inputs, ctx) do
-      user = User.find_by(auth_token: inputs[:auth_token])
+      auth_token = inputs[:auth_token]
+      user = AuthenticationToken.find_by(body: auth_token).user
       article_inputs = inputs[:article]
       if user
         article = Article.create(
@@ -42,7 +43,8 @@ module ArticleMutations
 
     return_field :article, ArticleType
     resolve -> (inputs, ctx) do
-      user = User.find_by(auth_token: inputs[:auth_token])
+      auth_token = inputs[:auth_token]
+      user = AuthenticationToken.find_by(body: auth_token).user
       article_inputs = inputs[:article]
       if user
         article = Article.find_by_id(inputs[:id])
@@ -53,7 +55,6 @@ module ArticleMutations
           status: article_inputs[:status],
           spotlighted: article_inputs[:spotlighted]
         )
-        article.user = user
         article.feature_image = article_inputs[:feature_image] if article_inputs[:feature_image]
         if article_inputs[:tags]
           article_inputs[:tags].to_a.each do |tag|

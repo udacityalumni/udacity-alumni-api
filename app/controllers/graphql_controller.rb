@@ -1,4 +1,4 @@
-class GraphqlController < ApplicationController
+class GraphqlController < ActionController::API
 
   def new
   end
