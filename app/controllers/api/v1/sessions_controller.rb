@@ -9,18 +9,18 @@ class Api::V1::SessionsController < ApplicationController
       token = TokenIssuer.create_and_return_token(user, request)
       render status: :ok, json: { user_email: user.email, auth_token: token }
     else
-      render json: { errors: 'Invalid email or password' }, status: 422
+      render json: { errors: 'Invalid email or password' }, status: :unprocessable_entity
     end
   end
 
   def destroy
     auth_token = request.headers['Authorization']
-    user = AuthenticationToken.find_by(body: auth_token).user
+    user = User.get_user_from_token(auth_token)
     if user
       TokenIssuer.expire_token(user, request)
       head 204
     else
-      render json: { errors: 'An error occured while deleting the token' }, status: 404
+      render json: { errors: 'An error occured while deleting the token' }, status: :not_found
     end
   end
 end

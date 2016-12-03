@@ -3,11 +3,11 @@ class Api::V1::UsersController < ApplicationController
 
   def show
     auth_token = request.headers['Authorization']
-    current_user = AuthenticationToken.find_by(body: auth_token).user
+    current_user = User.get_user_from_token(auth_token)
     if current_user
       respond_with current_user, serializer: UserSerializer
     else
-      render json: { errors: 'Invalid request' }, status: 422
+      render json: { errors: 'Invalid request' }, status: :unprocessable_entity
     end
   end
 
@@ -16,7 +16,7 @@ class Api::V1::UsersController < ApplicationController
     if user.save
       render json: user, status: 201, location: :api_v1_users
     else
-      render json: { errors: user.errors }, status: 422
+      render json: { errors: user.errors }, status: :unprocessable_entity
     end
   end
 
@@ -27,7 +27,7 @@ class Api::V1::UsersController < ApplicationController
              status: 200,
              location: :api_v1_users
     else
-      render json: { errors: current_user.errors }, status: 422
+      render json: { errors: current_user.errors }, status: :unprocessable_entity
     end
   end
 

@@ -13,21 +13,21 @@ class Api::V1::SpotlightImagesController < ApplicationController
           )
       }
     else
-      render json: { errors: 'Invalid request' }, status: 422
+      render json: { errors: 'Invalid request' }, status: :unprocessable_entity
     end
   end
 
   # Create a new spotlight image
   def create
     auth_token = request.headers['Authorization']
-    user = AuthenticationToken.find_by(body: auth_token).user
+    user = User.get_user_from_token(auth_token)
     spotlight_image = user.spotlight_images.build(spotlight_image_params)
     if spotlight_image.save
       render json: spotlight_image,
              status: 201,
              location: :api_v1_spotlight_images
     else
-      render json: { errors: 'Invalid Request' }, status: 422
+      render json: { errors: 'Invalid Request' }, status: :unprocessable_entity
     end
   end
 
@@ -40,10 +40,10 @@ class Api::V1::SpotlightImagesController < ApplicationController
                status: 201,
                location: :api_v1_spotlight_images
       else
-        render json: { errors: 'Invalid Request' }, status: 422
+        render json: { errors: 'Invalid Request' }, status: :unprocessable_entity
       end
     else
-      render json: { errors: 'Invalid Request' }, status: 422
+      render json: { errors: 'Invalid Request' }, status: :unprocessable_entity
     end
   end
 

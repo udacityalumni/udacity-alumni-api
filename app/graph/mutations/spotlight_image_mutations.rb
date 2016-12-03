@@ -7,7 +7,7 @@ module SpotlightImageMutations
     return_field :spotlight_image, SpotlightImageType
     resolve -> (inputs, _ctx) do
       auth_token = inputs[:auth_token]
-      user = AuthenticationToken.find_by(body: auth_token).user
+      user = User.get_user_from_token(auth_token)
       image = SpotlightImage.new(
         url: inputs[:url]
       )
@@ -27,7 +27,7 @@ module SpotlightImageMutations
     return_field :spotlight_image, SpotlightImageType
     resolve -> (inputs, _ctx) do
       auth_token = inputs[:auth_token]
-      user = AuthenticationToken.find_by(body: auth_token).user
+      user = User.get_user_from_token(auth_token)
       image = SpotlightImage.find_by(id: inputs[:id])
       image.update(url: inputs[:url], user: user)
       image.save!

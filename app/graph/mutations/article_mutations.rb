@@ -8,7 +8,7 @@ module ArticleMutations
 
     resolve -> (inputs, ctx) do
       auth_token = inputs[:auth_token]
-      user = AuthenticationToken.find_by(body: auth_token).user
+      user = User.get_user_from_token(auth_token)
       article_inputs = inputs[:article]
       if user
         article = Article.create(
@@ -44,7 +44,7 @@ module ArticleMutations
     return_field :article, ArticleType
     resolve -> (inputs, ctx) do
       auth_token = inputs[:auth_token]
-      user = AuthenticationToken.find_by(body: auth_token).user
+      user = User.get_user_from_token(auth_token)
       article_inputs = inputs[:article]
       if user
         article = Article.find_by_id(inputs[:id])

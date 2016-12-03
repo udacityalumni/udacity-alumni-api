@@ -8,7 +8,7 @@ module AuthUserMutations
     return_field :user, AuthUserType
     resolve -> (inputs, _ctx) do
       auth_token = inputs[:auth_token]
-      user = AuthenticationToken.find_by(body: auth_token).user
+      user = User.get_user_from_token(auth_token)
       user.name = inputs[:profile][:name] if inputs[:profile][:name]
       user.bio = inputs[:profile][:bio] if inputs[:profile][:bio]
       user.avatar = inputs[:profile][:avatar] if inputs[:profile][:avatar]

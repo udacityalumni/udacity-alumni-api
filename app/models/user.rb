@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   before_create :generate_auth_token!
+  include User
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -13,7 +14,6 @@ class User < ApplicationRecord
   after_initialize :set_default_role
   after_create :send_welcome_email
 
-  validates :auth_token, uniqueness: true
   validates :name,  presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
@@ -27,7 +27,7 @@ class User < ApplicationRecord
   has_many :authentication_tokens
 
   def generate_auth_token!
-    self.authentication_tokens << AuthenticationToken.create(body: Devise.friendly_token)
+    self.authentication_tokens << AuthenticationToken.create!
   end
 
   private
