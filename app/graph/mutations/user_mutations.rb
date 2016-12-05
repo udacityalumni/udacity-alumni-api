@@ -5,7 +5,7 @@ module UserMutations
     input_field :email, !types.String
 
     return_field :success, types.Boolean
-    resolve -> (inputs, _ctx) do
+    resolve -> (_obj, inputs, _ctx) do
       user = User.find_by(email: inputs[:email])
       if user
         user.send_reset_password_instructions
@@ -27,7 +27,7 @@ module UserMutations
     input_field :password_confirmation, !types.String
 
     return_field :user, AuthUserType
-    resolve -> (inputs, _ctx) do
+    resolve -> (_obj, inputs, _ctx) do
       user = User.with_reset_password_token(inputs[:token])
       if user
         User.reset_password_by_token(

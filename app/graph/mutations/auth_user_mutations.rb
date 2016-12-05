@@ -6,7 +6,7 @@ module AuthUserMutations
     input_field :profile, ProfileInputType
 
     return_field :user, AuthUserType
-    resolve -> (inputs, _ctx) do
+    resolve -> (_obj, inputs, _ctx) do
       auth_token = inputs[:auth_token]
       user = User.get_user_from_token(auth_token)
       user.name = inputs[:profile][:name] if inputs[:profile][:name]

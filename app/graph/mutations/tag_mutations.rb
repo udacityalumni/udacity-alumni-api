@@ -6,7 +6,7 @@ module TagMutations
 
     return_field :tags, types[TagType]
 
-    resolve -> (inputs, ctx) do
+    resolve -> (_obj, inputs, _ctx) do
       auth_token = inputs[:auth_token]
       user = User.get_user_from_token(auth_token)
       Tag.create(
@@ -23,7 +23,7 @@ module TagMutations
     input_field :auth_token, !types.String
     return_field :tags, types[TagType]
 
-    resolve -> (inputs, ctx) do
+    resolve -> (_obj, inputs, _ctx) do
       tags = inputs[:tags].to_a
       auth_token = inputs[:auth_token]
       user = User.get_user_from_token(auth_token)

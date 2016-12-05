@@ -72,7 +72,8 @@ QueryType = GraphQL::ObjectType.define do
   field :authUser, AuthUserType do
     argument :auth_token, !types.String
     resolve -> (_obj, args, _ctx) do
-      User.find_by(auth_token: args[:auth_token])
+      auth_token = args[:auth_token]
+      User.get_user_from_token(auth_token)
     end
   end
   field :publicUsers, types[UserType] do
@@ -89,7 +90,8 @@ QueryType = GraphQL::ObjectType.define do
   field :feedback, types[FeedbackType] do
     argument :auth_token, !types.String
     resolve -> (_obj, args, _ctx) do
-      user = User.find_by(auth_token: args[:auth_token])
+      auth_token = args[:auth_token]
+      User.get_user_from_token(auth_token)
       if user && user.role == 'admin'
         Feedback.all
       end

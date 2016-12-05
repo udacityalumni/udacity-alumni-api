@@ -7,7 +7,8 @@ class Api::V1::SessionsController < ApplicationController
     user = user_email.present? && User.find_by(email: user_email.downcase)
     if user && user.valid_password?(user_password)
       token = TokenIssuer.create_and_return_token(user, request)
-      render status: :ok, json: { user_email: user.email, auth_token: token }
+      session = { auth_token: token }
+      render status: :ok, json: { session: session }
     else
       render json: { errors: 'Invalid email or password' }, status: :unprocessable_entity
     end

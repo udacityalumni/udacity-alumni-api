@@ -6,7 +6,7 @@ module ArticleMutations
 
     return_field :article, ArticleType
 
-    resolve -> (inputs, ctx) do
+    resolve -> (_obj, inputs, _ctx) do
       auth_token = inputs[:auth_token]
       user = User.get_user_from_token(auth_token)
       article_inputs = inputs[:article]
@@ -42,7 +42,7 @@ module ArticleMutations
     input_field :article, ArticleInputType
 
     return_field :article, ArticleType
-    resolve -> (inputs, ctx) do
+    resolve -> (_obj, inputs, _ctx) do
       auth_token = inputs[:auth_token]
       user = User.get_user_from_token(auth_token)
       article_inputs = inputs[:article]
@@ -76,7 +76,7 @@ module ArticleMutations
     input_field :auth_token, !types.String
     input_field :id, !types.ID
     return_field :deleted_id, types.ID
-    resolve -> (inputs, ctx) do
+    resolve -> (_obj, inputs, _ctx) do
       article = Article.find_by_id(inputs[:id])
       id = article.id
       if article.destroy

@@ -5,7 +5,7 @@ module SpotlightImageMutations
     input_field :url, !types.String
 
     return_field :spotlight_image, SpotlightImageType
-    resolve -> (inputs, _ctx) do
+    resolve -> (_obj, inputs, _ctx) do
       auth_token = inputs[:auth_token]
       user = User.get_user_from_token(auth_token)
       image = SpotlightImage.new(
@@ -25,7 +25,7 @@ module SpotlightImageMutations
     input_field :url, !types.String
 
     return_field :spotlight_image, SpotlightImageType
-    resolve -> (inputs, _ctx) do
+    resolve -> (_obj, inputs, _ctx) do
       auth_token = inputs[:auth_token]
       user = User.get_user_from_token(auth_token)
       image = SpotlightImage.find_by(id: inputs[:id])
@@ -43,7 +43,7 @@ module SpotlightImageMutations
 
     return_field :deleted_id, !types.ID
 
-    resolve -> (inputs, _ctx) do
+    resolve -> (_obj, inputs, _ctx) do
       image = SpotlightImage.find_by_id(inputs[:id])
       deleted_id = image.id
       image.destroy
