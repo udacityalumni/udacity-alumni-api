@@ -2,9 +2,9 @@ module AdminMutations
   UpdateUser = GraphQL::Relay::Mutation.define do
     name 'UpdateUser'
     input_field :auth_token, !types.String, 'The admin auth token'
-    input_field :user_id, !types.Int, 'The user ID'
+    input_field :user_id, !types.ID, 'The user ID'
     input_field :user, AdminUserInputType
-    return_field :user, AdminUserInputType
+    return_field :user, AuthUserType
 
     resolve -> (_obj, inputs, _ctx) do
       auth_token = inputs[:auth_token]
@@ -16,9 +16,11 @@ module AdminMutations
         user.avatar = inputs[:user][:avatar] if inputs[:user][:avatar]
         user.email = inputs[:user][:email] if inputs[:user][:email]
         user.role = inputs[:user][:role] if inputs[:user][:role]
-        public_input = inputs[:profile][:public]
-        user.public = public_input unless inputs[:profile][:public].nil?
-        user
+        public_input = inputs[:user][:public]
+        user.public = public_input unless inputs[:user][:public].nil?
+        {
+          user: user
+        }
       end
     end
   end

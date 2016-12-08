@@ -14,6 +14,11 @@ QueryType = GraphQL::ObjectType.define do
       end
     end
   end
+  field :userRoles, types[types.String] do
+    resolve -> (_obj, args, _ctx) do
+      User.roles.map { |a| a[0]  }
+    end
+  end
   field :articles, types[ArticleType] do
     argument :tag, types.String
     argument :first, types.Int
