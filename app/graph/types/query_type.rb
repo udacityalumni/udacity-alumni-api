@@ -14,6 +14,18 @@ QueryType = GraphQL::ObjectType.define do
       end
     end
   end
+  field :allArticles, types[ArticleType] do
+    argument :auth_token, !types.String
+
+    resolve -> (_obj, args, _ctx) do
+      auth_token = args[:auth_token]
+      user = User.get_user_from_token(auth_token)
+      if user && user.role == "admin"
+        articles = Article.all.sort_by(&:created_at)
+        articles
+      end
+    end
+  end
   field :userRoles, types[types.String] do
     resolve -> (_obj, args, _ctx) do
       User.roles.map { |a| a[0]  }
