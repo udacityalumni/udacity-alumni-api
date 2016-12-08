@@ -16,6 +16,8 @@ MutationType = GraphQL::ObjectType.define do
 
   field :RequestPasswordInstructions, field: UserMutations::RequestPasswordInstructions.field
   field :ResetPassword, field: UserMutations::ResetPassword.field
-  
+
   field :CreateFeedback, field: FeedbackMutations::Create.field
+
+  field :AdminUpdateUser, field: AdminMutations::UpdateUser.field
 end

@@ -2,6 +2,18 @@ QueryType = GraphQL::ObjectType.define do
   name 'Query'
   description 'The root level query type'
 
+  field :allUsers, types[AuthUserType] do
+    argument :auth_token, !types.String
+
+    resolve -> (_obj, args, _ctx) do
+      auth_token = args[:auth_token]
+      user = User.get_user_from_token(auth_token)
+      if user && user.role == "admin"
+        users = User.all.sort { |a, b| a.name.downcase <=> b.name.downcase }
+        users
+      end
+    end
+  end
   field :articles, types[ArticleType] do
     argument :tag, types.String
     argument :first, types.Int
