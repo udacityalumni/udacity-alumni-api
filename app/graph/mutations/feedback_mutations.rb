@@ -11,7 +11,8 @@ module FeedbackMutations
       @user = User.get_user_from_token(auth_token)
       feedback = Feedback.create(
         description: inputs[:feedback][:description],
-        url: inputs[:feedback][:url]
+        url: inputs[:feedback][:url],
+        image: inputs[:feedback][:image].read
       )
       @user.feedback << feedback
       @user.save!
