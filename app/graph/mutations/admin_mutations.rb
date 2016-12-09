@@ -18,6 +18,7 @@ module AdminMutations
         user.role = inputs[:user][:role] if inputs[:user][:role]
         public_input = inputs[:user][:public]
         user.public = public_input unless inputs[:user][:public].nil?
+        user.save!
         {
           user: user
         }
