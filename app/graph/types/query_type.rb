@@ -24,6 +24,10 @@ QueryType = GraphQL::ObjectType.define do
         articles = Article.all.sort_by(&:created_at)
         articles
       end
+      if user && user.role == "writer"
+        articles = Article.where(user: user).sort_by(&:created_at)
+        articles
+      end
     end
   end
   field :userRoles, types[types.String] do
