@@ -69,15 +69,6 @@ User.create!(
   role: 'admin'
 )
 
-User.create!(
-  name: 'James Gallagher',
-  email: 'me@jamesthedev.com',
-  password: 'Password123!',
-  bio: 'Devops Team Lead at Udacity Alumni',
-  avatar: 'https://avatars3.githubusercontent.com/u/15236109?v=3&s=460',
-  role: 'admin'
-)
-
 puts 'Creating tags'
 tags = [
   'Software Engineering',
