@@ -58,12 +58,13 @@ module ArticleMutations
         article.feature_image = article_inputs[:feature_image] if article_inputs[:feature_image]
         if article_inputs[:tags]
           article_inputs[:tags].to_a.each do |tag|
-            tag = Tag.find_or_create_by(tag: tag.to_h["tag"])
-            article.tags << tag
+            the_tag = Tag.find_or_create_by(tag: tag.to_h["tag"])
+            unless article.tags.include? the_tag
+              article.tags << the_tag
+            end
           end
         end
         # Make sure tags are unique
-        article.tags = article.tags.uniq{ |art| art.tag }
         article.save!
         {
           article: article
