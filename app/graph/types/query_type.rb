@@ -23,8 +23,7 @@ QueryType = GraphQL::ObjectType.define do
       if user && user.role == "admin"
         articles = Article.all.sort_by(&:created_at)
         articles
-      end
-      if user && user.role == "writer"
+      elsif user && user.role == "writer"
         articles = Article.where(user: user).sort_by(&:created_at)
         articles
       end
