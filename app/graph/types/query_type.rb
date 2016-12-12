@@ -123,7 +123,7 @@ QueryType = GraphQL::ObjectType.define do
     argument :auth_token, !types.String
     resolve -> (_obj, args, _ctx) do
       auth_token = args[:auth_token]
-      User.get_user_from_token(auth_token)
+      user = User.get_user_from_token(auth_token)
       if user && user.role == 'admin'
         Feedback.all
       end
