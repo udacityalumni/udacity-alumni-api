@@ -4,6 +4,8 @@ FeedbackType = GraphQL::ObjectType.define do
   field :id, !types.ID, 'The tag id'
   field :description, !types.String, 'Description of the feedback'
   field :url, types.String, 'The url where the feedback came from'
-  field :user, UserType, 'The user that submitted the feedback'
   field :image, types.image, 'The image that the user uploaded'
+  field :user, AuthUserType, 'The user that submitted the feedback'
+  field :created_at, !types.String, 'When the feedback was created'
+  field :updated_at, !types.String, 'When the feedback was updated'
 end

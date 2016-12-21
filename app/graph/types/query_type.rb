@@ -23,6 +23,9 @@ QueryType = GraphQL::ObjectType.define do
       if user && user.role == "admin"
         articles = Article.all.sort_by(&:created_at)
         articles
+      elsif user && user.role == "author"
+        articles = Article.where(user: user).sort_by(&:created_at)
+        articles
       end
     end
   end
@@ -120,7 +123,7 @@ QueryType = GraphQL::ObjectType.define do
     argument :auth_token, !types.String
     resolve -> (_obj, args, _ctx) do
       auth_token = args[:auth_token]
-      User.get_user_from_token(auth_token)
+      user = User.get_user_from_token(auth_token)
       if user && user.role == 'admin'
         Feedback.all
       end

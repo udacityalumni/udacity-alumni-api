@@ -2,7 +2,8 @@ puts 'Creating Users'
 User.create!(
   name: 'David Harris',
   email: 'forbiddenvoid@gmail.com',
-  password: 'Password'
+  password: 'Password',
+  role: 'admin'
 )
 
 User.create!(
@@ -10,7 +11,8 @@ User.create!(
   email: 'admin@ryancollins.io',
   password: 'Password',
   bio: 'Experienced Software Engineer specializing in implementing cutting-edge technologies in a multitude of domains, focusing on Front End Web Development and UI / UX.',
-  avatar: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAQyAAAAJDU3YWY4Nzk1LWQ0YzEtNGIyMy1iOWI3LTBmMTllMmI1Y2Q5NQ.jpg'
+  avatar: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAQyAAAAJDU3YWY4Nzk1LWQ0YzEtNGIyMy1iOWI3LTBmMTllMmI1Y2Q5NQ.jpg',
+  role: 'admin'
 )
 
 User.create!(
@@ -18,7 +20,8 @@ User.create!(
   email: 'andreas@gmail.com',
   password: 'Password',
   bio: 'I started to code about 2 years ago and have been very focused on developing cutting edge UI components. I have a passion for functional programming, and I love creating environments that make it easier for developers to write consistent, testable code.',
-  avatar: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAcWAAAAJDM2ZjBiYmMwLTk4ZmUtNGVkOC05MjYyLTMxMGI1ZmU1NTMyZQ.jpg'
+  avatar: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAcWAAAAJDM2ZjBiYmMwLTk4ZmUtNGVkOC05MjYyLTMxMGI1ZmU1NTMyZQ.jpg',
+  role: 'admin'
 )
 
 User.create!(
@@ -26,7 +29,44 @@ User.create!(
   email: 'demo@udacity.com',
   password: 'Password123!',
   bio: 'An amazing, but sadly fake user',
-  avatar: 'http://data.whicdn.com/images/88776105/superthumb.jpg'
+  avatar: 'http://data.whicdn.com/images/88776105/superthumb.jpg',
+  role: 'admin'
+)
+
+User.create!(
+  name: 'Author User',
+  email: 'author@udacity.com',
+  password: 'Password123!',
+  bio: 'An amazing, but sadly fake author user',
+  avatar: 'http://data.whicdn.com/images/88776105/superthumb.jpg',
+  role: 'author'
+)
+
+User.create!(
+  name: 'Abhishek Ghosh',
+  email: 'abhighosh18@gmail.com',
+  password: 'Password123!',
+  bio: "Hi my name is Abhi and I am a 🕸 developer working with 🐍  and 🛤'",
+  avatar: 'https://avatars1.githubusercontent.com/u/19292575?v=3&s=460',
+  role: 'admin'
+)
+
+User.create!(
+  name: 'Chashmeet Singh',
+  email: 'chashmeetsingh@gmail.com',
+  password: 'Password123!',
+  bio: 'Hi, I’m Chashmeet. I am a freelancer and specialize in both web as well as mobile application development. I’m passionate about what I do, and I love to help people out.',
+  avatar: 'https://files.slack.com/files-tmb/T056SDA1K-F3BKPEYF9-812ce53e6c/cash_360.png',
+  role: 'admin'
+)
+
+User.create!(
+  name: 'James Gallagher',
+  email: 'me@jamesthedev.com',
+  password: 'Password123!',
+  bio: 'Devops Team Lead at Udacity Alumni',
+  avatar: 'https://avatars3.githubusercontent.com/u/15236109?v=3&s=460',
+  role: 'admin'
 )
 
 puts 'Creating tags'
