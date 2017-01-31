@@ -4,8 +4,6 @@
 
 ## Getting Started
 
-Welcome!!  This app is the starter project for the Udacity Alumni Web Application project.  More information will be provided here and in [the Udacity Alumni Wiki](https://github.com/udacityalumni/resources/wiki) as it becomes available.
-
 The docker container will do _all_ of the networking between the database and app and will start a rails server.
 
 To open the correct URL in your web browser, you can run the following
